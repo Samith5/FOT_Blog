@@ -41,9 +41,9 @@ class BlogController extends Controller
             })
             ->addColumn('status', function ($blog) {
                 if ($blog->status == 1) {
-                    return '<div class="text-success"><i class="fas fa-check-circle mr-2"></i> PUBLISHED</div>';
+                    return '<div class="text-success publish-link" data-id="' . $blog->url . '"><i class="fas fa-check-circle mr-2" ></i> PUBLISHED</div>';
                 } else {
-                    return '<div class="text-danger"><i class="fas fa-times-circle mr-2"></i> NOT PUBLISHED</div>';
+                    return '<div class="text-danger publish-link" data-id="' . $blog->url . '"><i class="fas fa-times-circle mr-2" ></i> NOT PUBLISHED</div>';
                 }
             })
 
@@ -91,6 +91,31 @@ class BlogController extends Controller
             Session::flash('status', ['0', "Please enter required information."]);
         }
         return redirect()->route('blogs.index');
+    }
+
+    public function blogStatusChange(Request $request)
+    {
+        $url = $request->url;
+
+        if ($url) {
+            $blog = DB::table('blogs')->where([
+                ['status', "!=",  '-1'],
+                ['url', '=', $url],
+            ])->first();
+
+            if ($blog) {
+                $status = $blog->status == 1 ? 0 : 1;
+
+                $affected = DB::table('blogs')->where('url', $url)->update([
+                    'status' => $status,
+                ]);
+
+                if ($affected) {
+                    return $affected;
+                }
+            }
+        }
+        return 0;
     }
 
     public function updateBlog(Request $request)

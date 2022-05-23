@@ -41,7 +41,6 @@
 </body>
 
 <!-- scripts -->
-<!-- jquery -->
 <!-- jQuery -->
 <script type="text/javascript" src="{{ URL::asset('dashboard/plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->

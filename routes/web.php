@@ -37,6 +37,7 @@ Route::get('/login', function () {
     return redirect()->route('home');
 });
 Route::get('/blog/{url}/', [FrondEndController::class, 'blogIndex'])->name('blog');
+Route::get('/pages/{url}/', [FrondEndController::class, 'pagesIndex'])->name('pages');
 
 
 // Dashboard Routes 
@@ -57,4 +58,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/dashboard/blogs/update', [BlogController::class, 'updateBlog'])->name('blogs.update');
     Route::post('/admin/dashboard/blogs/one/details', [BlogController::class, 'blogDetails'])->name('blog.details');
     Route::post('/admin/dashboard/blogs/delete', [BlogController::class, 'blogDelete'])->name('blog.delete');
+    Route::post('/admin/dashboard/blogs/change/status', [BlogController::class, 'blogStatusChange'])->name('blog.change');
 });

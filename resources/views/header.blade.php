@@ -13,10 +13,10 @@
                 <a class="nav-link" href="{{route('home')}}">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Techno Media</a>
+                <a class="nav-link" href="{{route('pages', 'Techno Media')}}">Techno Media</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sports</a>
+                <a class="nav-link" href="{{route('pages', 'Sports')}}">Sports</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

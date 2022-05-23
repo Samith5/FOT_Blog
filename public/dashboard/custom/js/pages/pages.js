@@ -29,7 +29,7 @@ $(function () {
             }
             else {
                 data = data[0];
-                $("#editTitle").val(data.id);
+                $("#editTitle").val(data.title);
                 $('#editDescription').summernote('code', data.description);
                 editpond.addFile('/' + data.image);
                 if (data.status == 1) {
@@ -65,6 +65,22 @@ $(function () {
 
         })
 
+    })
+
+    $(document).on('click', '.publish-link', function (e) {
+
+        $.post("/admin/dashboard/blogs/change/status", {
+            url: $(this).attr('data-id'),
+            _token: post_token,
+        }, function (data) {
+            if (data == 0) {
+                toastr.error("Something went wrong. Please try again.");
+            }
+            else {
+                toastr.success("Blog status changed successfully");
+                blogsTable.ajax.reload();
+            }
+        });
     })
 
     FilePond.registerPlugin(

@@ -12,7 +12,7 @@
                 <div class="col my-auto">
                     <div class="px-5">
                         <div class="p-1">
-                            <div class="blog-title">{{$blog->title}}</div>
+                            <div class="blog-title2">{{$blog->title}}</div>
                             <small>{{date("M d, Y", strtotime($blog->created_at))}}</small>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
         <div class="col-md-8">
             <div class="row bg-light">
                 <div class="col my-auto">
-                    <div class="px-5" id="description" data='{{$blog->description}}'>
+                    <div class="p-4" id="description" data='{{$blog->description}}'>
 
                     </div>
                 </div>

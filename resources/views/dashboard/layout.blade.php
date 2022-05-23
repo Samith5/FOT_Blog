@@ -56,7 +56,7 @@
                     <span class="nav-link" data-widget="pushmenu" role="button" id="makeMiniSideBar"><i class="fas fa-bars"></i></span>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="{{route('dashboard.home')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -104,7 +104,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index.html" class="brand-link">
+            <a href="{{route('dashboard.home')}}" class="brand-link">
                 <img src="/img/logo.jpg" alt="FOT BLOG" class="brand-image elevation-3" style="opacity: 0.8" />
                 <span class="brand-text font-weight-bold">FOT BLOG</span>
             </a>
