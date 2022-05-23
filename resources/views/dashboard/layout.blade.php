@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+    <title>@yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -18,6 +18,7 @@
     <link href="{{asset('dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}" rel="stylesheet">
     <!-- JQVMap -->
     <link href="{{asset('dashboard/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('dashboard/plugins/sweetalert2/sweetalert2.css')}}" rel="stylesheet">
     <!-- Theme style -->
     <link href="{{asset('dashboard/dist/css/adminlte.min.css')}}" rel="stylesheet">
     <!-- overlayScrollbars -->
@@ -55,7 +56,7 @@
                     <span class="nav-link" data-widget="pushmenu" role="button" id="makeMiniSideBar"><i class="fas fa-bars"></i></span>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="{{route('dashboard.home')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -103,9 +104,9 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index.html" class="brand-link">
-                <img src="/img/logo.jpg" alt="FOT Blog" class="brand-image elevation-3" style="opacity: 0.8" />
-                <span class="brand-text font-weight-bold">FOT Blog</span>
+            <a href="{{route('dashboard.home')}}" class="brand-link">
+                <img src="/img/logo.jpg" alt="FOT BLOG" class="brand-image elevation-3" style="opacity: 0.8" />
+                <span class="brand-text font-weight-bold">FOT BLOG</span>
             </a>
 
             <!-- Sidebar -->
@@ -130,7 +131,7 @@
                         <li class="nav-item ">
                             <a href="{{route('blogs.index')}}" class="nav-link sidebar-nav-link" id="sideBarPages">
                                 <i class="nav-icon fas fa-images"></i>
-                                <p>Pages</p>
+                                <p>Blogs</p>
                             </a>
                         </li>
                         <li class="nav-item d-none">
@@ -185,6 +186,7 @@
     <script type="text/javascript" src="{{ URL::asset('dashboard/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
     <script type="text/javascript" src="{{ URL::asset('dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('dashboard/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script type="text/javascript" src="{{ URL::asset('dashboard/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
@@ -197,6 +199,11 @@
     <!-- alert js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
+
+    <script>
+        var post_token = "{{ csrf_token() }}";
+    </script>
+
     <script>
         $(document).ready(function() {
             if ($("#status").attr('dataID') != undefined) {

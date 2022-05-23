@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Login | FOT Blog</title>
+    <title>Dashboard Login | FOT BLOG</title>
 
     <!-- Bootsrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -27,11 +27,11 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-header text-center">
-                    <h5 class="card-title pt-1">FOT Blog</h5>
+                    <h5 class="card-title pt-1">FOT BLOG</h5>
                     <h6 class="card-title">Admin Login</h6>
                 </div>
                 <div class="card-body m-3">
-                    <form action="{{route('adminLogin')}}" method="POST">
+                    <form action="{{route('login')}}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="col-lg-12 ">

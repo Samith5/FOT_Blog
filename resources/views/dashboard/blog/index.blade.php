@@ -1,5 +1,9 @@
 @extends('dashboard.layout')
 
+@section('title')
+Blogs | FOT BLOG
+@endsection
+
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
@@ -12,12 +16,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Pages</h1>
+                    <h1 class="m-0">Blogs</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Pages</li>
+                        <li class="breadcrumb-item active">Blogs</li>
                     </ol>
                 </div>
             </div>
@@ -27,7 +31,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <button type="button" class="btn btn-primary  mx-2" data-toggle="modal" data-target="#addNewModel"><i class="fas fa-plus pr-2"></i>Add New Page
+                <button type="button" class="btn btn-primary  mx-2" data-toggle="modal" data-target="#addNewModel"><i class="fas fa-plus pr-2"></i>Add New Blog
             </div>
 
             <div class="row mt-3">
@@ -72,7 +76,7 @@
             <form action="{{route('blogs.addNew')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addNewModelTitle">Add New Page</h5>
+                    <h5 class="modal-title" id="addNewModelTitle">Add New Blog</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -80,14 +84,13 @@
                 <div class="modal-body mx-3">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label class="mb-2 form-label" for="title">Page Title </label>
+                            <label class="mb-2 form-label" for="title">Blog Title </label>
                             <input type="text" class="form-control" placeholder="Title" name="title" id="title" autofocus required maxlength="100">
-                            <div id="titleError" class="d-none inputError"></div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
-                            <label class="mb-2 form-label" for="description">Page Description </label>
+                            <label class="mb-2 form-label" for="description">Blog Description </label>
                             <textarea class="form-control" placeholder="Description" name="description" id="description" required maxlength="4500"></textarea>
                         </div>
                     </div>
@@ -103,7 +106,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary px-4">Save</button>
                 </div>
             </form>
         </div>
@@ -116,8 +119,9 @@
         <div class="modal-content">
             <form action="{{route('blogs.update')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="url" id="editURL">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addNewModelTitle">Edit Page</h5>
+                    <h5 class="modal-title" id="editModelTitle">Edit Blog</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -125,30 +129,29 @@
                 <div class="modal-body mx-3">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label class="mb-2 form-label" for="title">Page Title </label>
-                            <input type="text" class="form-control" placeholder="Title" name="title" id="title" autofocus required maxlength="100">
-                            <div id="titleError" class="d-none inputError"></div>
+                            <label class="mb-2 form-label" for="editTitle">Blog Title </label>
+                            <input type="text" class="form-control" placeholder="Title" name="editTitle" id="editTitle" autofocus required maxlength="100">
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
-                            <label class="mb-2 form-label" for="description">Page Description </label>
-                            <textarea class="form-control" placeholder="Description" name="description" id="description" required maxlength="4500"></textarea>
+                            <label class="mb-2 form-label" for="editDescription">Blog Description </label>
+                            <textarea class="form-control" placeholder="Description" name="editDescription" id="editDescription" required maxlength="4500"></textarea>
                         </div>
                     </div>
                     <div class="mb-4 m-0">
 
-                        <input type="file" class="filepond" required id="filepond" name="filepond" accept="image/png, image/jpeg, image/gif" />
+                        <input type="file" class="filepond" required id="editFilepond" name="editFilepond" accept="image/png, image/jpeg, image/gif" />
                     </div>
 
                     <div class="form-check form-switch mb-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="published" name="published" checked>
-                        <label class="form-check-label" for="published">Published</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="editPublished" name="editPublished" checked>
+                        <label class="form-check-label" for="editPublished">Published</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary px-4">Update Changes</button>
                 </div>
             </form>
         </div>
@@ -167,4 +170,5 @@
 
 <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 <script type="text/javascript" src="{{ URL::asset('dashboard/custom/js/pages/pages.js') }}"></script>
+
 @endsection
