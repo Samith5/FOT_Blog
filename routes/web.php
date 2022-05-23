@@ -44,3 +44,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/dashboard/blogs/add-new', [PageController::class, 'addNewPage'])->name('blogs.addNew');
     Route::post('/admin/dashboard/blogs/a-new', [PageController::class, 'addNewPage'])->name('blogs.update');
 });
+
