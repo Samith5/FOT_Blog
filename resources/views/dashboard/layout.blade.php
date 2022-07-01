@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title')</title>
+    <link rel="icon" type="image/x-icon" href="/img/logo.ico">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -86,7 +87,11 @@
                         </form>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home')}}" role="button">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>

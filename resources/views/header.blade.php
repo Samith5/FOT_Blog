@@ -16,7 +16,16 @@
                 <a class="nav-link" href="{{route('pages', 'Techno Media')}}">Techno Media</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pages', 'Sports')}}">Sports</a>
+                <a class="nav-link" href="{{route('pages', 'Buddist Society')}}">Buddist Society</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('pages', 'Techno Sports')}}">Techno Sports</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('pages', 'Alumini Blog')}}"> Alumini Blog </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('pages', 'Science and Technology')}}"> Science and Technology </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

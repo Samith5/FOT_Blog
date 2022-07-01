@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-{{$page}} | FOT BLOG
+Search Results for: {{$query}} | FOT BLOG
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h5 class="mt-1">{{$page}} Blogs</h5>
+            <h5 class="mt-1">Search Results for: {{$query}} </h5>
             <hr class="mt-2">
             @if(sizeof($blogs))
             <div class="row d-flex flex-wrap justify-content-center">
@@ -26,6 +26,8 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <div class="alert alert-info text-center">No Blogs Found!</div>
                 @endif
             </div>
         </div>

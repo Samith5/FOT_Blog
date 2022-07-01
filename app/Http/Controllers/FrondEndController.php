@@ -12,6 +12,11 @@ class FrondEndController extends Controller
         $topBlogs = DB::table('blogs')->where('status', "=",  '1')->latest()->limit(6)->get();
         $blogs = DB::table('blogs')->where('status', "=",  '1')->latest()->get();
 
+        $count = 0;
+        if (sizeof($blogs)) {
+            $count = sizeof($blogs) % 12;
+        }
+
         return view('home', ['topBlogs' => $topBlogs, 'blogs' => $blogs]);
     }
 
@@ -55,6 +60,41 @@ class FrondEndController extends Controller
                 ->get();
 
             return view('pages', ['blogs' => $blogs, 'page' => $url]);
+        }
+    }
+
+    public function searchIndex(Request $request)
+    {
+        $url = $request->q;
+
+        if ($url == 'Sports') {
+            $blogs = DB::table('blogs')
+                ->where([
+                    ['description', 'LIKE', '%sport%'],
+                    ['status', "=",  '1']
+                ])
+                ->orWhere([
+                    ['title', 'LIKE', '%sport%'],
+                    ['status', "=",  '1']
+                ])
+                ->latest()
+                ->get();
+
+            return view('pages', ['blogs' => $blogs, 'page' => $url]);
+        } else {
+            $blogs = DB::table('blogs')
+                ->where([
+                    ['description', 'LIKE', '%' . $url . '%'],
+                    ['status', "=",  '1']
+                ])
+                ->orWhere([
+                    ['title', 'LIKE', '%' . $url . '%'],
+                    ['status', "=",  '1']
+                ])
+                ->latest()
+                ->get();
+
+            return view('search', ['blogs' => $blogs, 'query' => $url]);
         }
     }
 }

@@ -64,7 +64,7 @@
     </div>
     <div class="footer">
         <a href="{{route('home')}}">
-            Login as User
+            Back to Home
         </a>
     </div>
 </body>
