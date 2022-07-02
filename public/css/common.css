@@ -314,3 +314,6 @@
 .blog-title2, .blog-title, .blog-desc{
   font-family: "Inria Sans", "Malithi", sans-serif;
 }
+.dropdownItem{
+  cursor: pointer;
+}

@@ -17,7 +17,7 @@
             Asst. Registrar +94112078171</p>
         </div>
 
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-4 d-flex justify-content-center">
           <form action="{{route('search')}}" method="get">
             <div class="input-group">
               <div class="form-outline d-flex">

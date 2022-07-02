@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\FrondEndController;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/dashboard/home', function () {
         return view('dashboard.home');
     })->name('dashboard.home');
+
+    Route::post('/admin/dashboard/change-password', [AdminController::class, 'changePassword'])->name('admin.changePassword');
 
     Route::get('/admin/dashboard/blogs', [BlogController::class, 'index'])->name('blogs.index');
     Route::get('/admin/dashboard/blogs/details', [BlogController::class, 'indexDetails'])->name('blogs.details');
