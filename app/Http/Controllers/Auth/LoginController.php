@@ -58,7 +58,7 @@ class LoginController extends Controller
 
         if ($admin) {
 
-            if ($password != $admin->password) {
+            if (Hash::check($password, $admin->password)) {
                 Session::flash('status', "The password you entered is incorrect.");
                 return redirect()->back();
             } else {

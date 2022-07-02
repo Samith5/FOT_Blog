@@ -97,6 +97,18 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item dropdownItem" data-toggle="modal" data-target="#changePasswordModal">Change Password</div>
+
+                        </div>
+                    </li>
+                </div>
                 <li class="nav-item">
                     <a href="{{route('adminLogout')}}" class="nav-link">
                         <i class="fas fa-sign-out-alt"></i>
@@ -165,6 +177,41 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{route('admin.changePassword')}}" method="post" id="changePasswordForm">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="oldPassword">Old Passsword</label>
+                            <input type="password" class="form-control" id="oldPassword" placeholder="Enter Old Password" name="oldPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="newPassword">New Passsword</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="Enter New Password" name="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="confirmPassword">Confirm Passsword</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Your Password" name="confirmPassword" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <!-- jQuery -->
     <script type="text/javascript" src="{{ URL::asset('dashboard/plugins/jquery/jquery.min.js') }}"></script>
@@ -235,6 +282,37 @@
                     toastr.error($("#status").attr('dataMSG'));
                 }
             }
+        });
+
+        $("#changePasswordForm").submit(function(e) {
+
+            var oldP = $("#oldPassword").val();
+            var newP = $("#newPassword").val();
+            var conP = $("#confirmPassword").val();
+
+            if (newP != conP) {
+                toastr.error("Password and confirm password does not match.");
+            } else if (oldP == newP) {
+                toastr.error("Old password can't be your new password.");
+            } else {
+                $.post("{{route('admin.changePassword')}}", {
+                    oldP: oldP,
+                    _token: post_token,
+                    newP: newP,
+                    conP: conP,
+                }, function(result) {
+                    if (result == 1) {
+                        toastr.success("Password changed successfully.");
+                        $('#changePasswordModal').modal('hide')
+                    } else {
+                        toastr.error("Current password did not match.");
+                    }
+                });
+            }
+            return false;
+
+
+
         });
     </script>
 

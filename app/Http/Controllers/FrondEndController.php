@@ -10,12 +10,7 @@ class FrondEndController extends Controller
     public function index()
     {
         $topBlogs = DB::table('blogs')->where('status', "=",  '1')->latest()->limit(6)->get();
-        $blogs = DB::table('blogs')->where('status', "=",  '1')->latest()->get();
-
-        $count = 0;
-        if (sizeof($blogs)) {
-            $count = sizeof($blogs) % 12;
-        }
+        $blogs = DB::table('blogs')->where('status', "=",  '1')->latest()->paginate(9);
 
         return view('home', ['topBlogs' => $topBlogs, 'blogs' => $blogs]);
     }
