@@ -22,7 +22,7 @@
                 <a class="nav-link" href="{{route('pages', 'Techno Sports')}}">Techno Sports</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('pages', 'Alumini Blog')}}"> Alumini Blog </a>
+                <a class="nav-link" href="{{route('pages', 'Alumni')}}"> Alumni  </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('pages', 'Science and Technology')}}"> Science and Technology </a>

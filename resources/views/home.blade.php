@@ -25,7 +25,7 @@ Home | FOT BLOG
                     <div class="carousel-item active">
                         <div class="row bg-secondary">
                             <div class="col">
-                                <img src="/img/sa.jpg" class="d-block w-100" alt="FOT_Blog">
+                                <img src="/img/new.jpg" class="d-block w-100" alt="FOT_Blog">
                             </div>
                         </div>
                     </div>
