@@ -38,7 +38,7 @@ class FrondEndController extends Controller
                     ['status', "=",  '1']
                 ])
                 ->latest()
-                ->get();
+                ->paginate(9);
 
             return view('pages', ['blogs' => $blogs, 'page' => $url]);
         } else {
@@ -52,7 +52,7 @@ class FrondEndController extends Controller
                     ['status', "=",  '1']
                 ])
                 ->latest()
-                ->get();
+                ->paginate(9);
 
             return view('pages', ['blogs' => $blogs, 'page' => $url]);
         }
@@ -73,7 +73,7 @@ class FrondEndController extends Controller
                     ['status', "=",  '1']
                 ])
                 ->latest()
-                ->get();
+                ->paginate(9);
 
             return view('pages', ['blogs' => $blogs, 'page' => $url]);
         } else {
@@ -87,7 +87,7 @@ class FrondEndController extends Controller
                     ['status', "=",  '1']
                 ])
                 ->latest()
-                ->get();
+                ->paginate(9);
 
             return view('search', ['blogs' => $blogs, 'query' => $url]);
         }

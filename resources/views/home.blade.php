@@ -84,6 +84,8 @@ Home | FOT BLOG
                 <div class="d-flex justify-content-end mt-3">
                     {{ $blogs->links() }}
                 </div>
+                @else
+                <div class="alert alert-info text-center">No Blogs Found!</div>
                 @endif
             </div>
         </div>
